@@ -1,0 +1,58 @@
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap");
+@import "tailwindcss";
+
+/* Light theme variables */
+:root {
+  --color-textClr: #000;
+  --color-blue: #4b5efc;
+  --color-light: #d2d3da;
+  --color-light-btn: #fff;
+  --color-light-bg: #f1f2f3;
+  --color-dark-bg: #17171c;
+
+  --text-3xl: 2rem;
+}
+
+/* Dark theme overrides */
+.dark {
+  --color-textClr: #fff;
+  --color-light: #4e505f;
+  --color-light-btn: #2e2f38;
+  --color-light-bg: #17171c;
+  --color-dark-bg: #f1f2f3;
+}
+
+@theme {
+  --color-textClr: var(--color-textClr);
+  --color-blue: var(--color-blue);
+  --color-light: var(--color-light);
+  --color-light-btn: var(--color-light-btn);
+  --color-light-bg: var(--color-light-bg);
+  --color-dark-bg: var(--color-dark-bg);
+  --text-3xl: var(--text-3xl);
+}
+
+/* Tambahkan di global CSS */
+* {
+  @apply transition-colors duration-300 ease-in-out;
+}
+
+body {
+  font-family: "Work Sans", sans-serif;
+  text-color: var(--color-textClr);
+  max-width: 660px;
+  margin: 0 auto;
+  background-color: var(--color-light-bg);
+}
+
+#toggle-circle {
+  right: 4px;
+}
+
+#toggle-circle.active {
+  right: calc(100% - 28px);
+}
+
+.btn {
+  @apply flex justify-center items-center max-[660px]:aspect-square rounded-3xl text-textClr text-3xl;
+}

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link href="./src/style.css" rel="stylesheet" />
+    <title>Calculator</title>
+  </head>
+  <body>
+    <main
+      class="flex flex-col items-center justify-between min-h-screen px-4 pb-8 pt-4 overflow-hidden dark:bg-light-bg"
+    >
+      <button
+        id="theme-toggle"
+        class="flex justify-between items-center relative w-[72px] bg-light-btn p-1 rounded-3xl"
+        data-theme="light"
+      >
+        <div
+          id="toggle-circle"
+          class="absolute size-6 aspect-square bg-light rounded-full transition-all"
+        ></div>
+        <div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            class="size-6 stroke-blue"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 3v2.25m6.364.386-1.591 1.591M21 12h-2.25m-.386 6.364-1.591-1.591M12 18.75V21m-4.773-4.227-1.591 1.591M5.25 12H3m4.227-4.773L5.636 5.636M15.75 12a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+            />
+          </svg>
+        </div>
+        <div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            class="size-6 stroke-blue"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21.752 15.002A9.72 9.72 0 0 1 18 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 0 0 3 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 0 0 9.002-5.998Z"
+            />
+          </svg>
+        </div>
+      </button>
+      <div class="min-w-full grid grid-rows-7 gap-2 min-sm:gap-4">
+        <div class="flex justify-end items-end">
+          <input
+            id="expression"
+            type="text"
+            value=""
+            disabled
+            readonly
+            class="w-full text-right text-textClr/50 tracking-wide text-4xl font-light select-none"
+          />
+        </div>
+        <div>
+          <input
+            id="display"
+            type="text"
+            value=""
+            disabled
+            readonly
+            class="w-full text-right text-6xl font-light text-textClr"
+          />
+        </div>
+
+        <div class="grid grid-cols-4 gap-2 *:select-none min-sm:gap-4">
+          <button id="clear" class="btn bg-light">C</button>
+          <button class="btn bg-light"><sup>+</sup>/<sub>-</sub></button>
+          <button class="btn bg-light">&#x25;</button>
+          <button class="btn !text-white bg-blue">&#xf7;</button>
+        </div>
+        <div class="grid grid-cols-4 gap-2 *:select-none min-sm:gap-4">
+          <button class="btn bg-light-btn">7</button>
+          <button class="btn bg-light-btn">8</button>
+          <button class="btn bg-light-btn">9</button>
+          <button class="btn !text-white bg-blue">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="3"
+              stroke="currentColor"
+              class="size-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M6 18 18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+        <div class="grid grid-cols-4 gap-2 *:select-none min-sm:gap-4">
+          <button class="btn bg-light-btn">4</button>
+          <button class="btn bg-light-btn">5</button>
+          <button class="btn bg-light-btn">6</button>
+          <button class="btn !text-white bg-blue">&#x2212;</button>
+        </div>
+        <div class="grid grid-cols-4 gap-2 *:select-none min-sm:gap-4">
+          <button class="btn bg-light-btn">1</button>
+          <button class="btn bg-light-btn">2</button>
+          <button class="btn bg-light-btn">3</button>
+          <button class="btn !text-white bg-blue">&#x2b;</button>
+        </div>
+        <div class="grid grid-cols-4 gap-2 *:select-none min-sm:gap-4">
+          <button class="btn bg-light-btn">,</button>
+          <button class="btn bg-light-btn">0</button>
+          <button class="btn bg-light-btn">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.8"
+              stroke="currentColor"
+              class="size-7"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 9.75 14.25 12m0 0 2.25 2.25M14.25 12l2.25-2.25M14.25 12 12 14.25m-2.58 4.92-6.374-6.375a1.125 1.125 0 0 1 0-1.59L9.42 4.83c.21-.211.497-.33.795-.33H19.5a2.25 2.25 0 0 1 2.25 2.25v10.5a2.25 2.25 0 0 1-2.25 2.25h-9.284c-.298 0-.585-.119-.795-.33Z"
+              />
+            </svg>
+          </button>
+          <button class="btn !text-white bg-blue">&#x3d;</button>
+        </div>
+      </div>
+    </main>
+
+    <script src="./src/index.js"></script>
+  </body>
+</html>
