@@ -9,16 +9,16 @@
   </head>
   <body>
     <main
-      class="flex flex-col items-center justify-between min-h-screen px-4 pb-8 pt-4 overflow-hidden dark:bg-light-bg"
+      class="flex flex-col h-full w-full items-center justify-between px-4 pb-8 pt-4 overflow-hidden"
     >
       <button
         id="theme-toggle"
-        class="flex justify-between items-center relative w-[72px] bg-light-btn p-1 rounded-3xl"
+        class="flex justify-between items-center relative w-[72px] bg-btn-primary p-1 rounded-3xl"
         data-theme="light"
       >
         <div
           id="toggle-circle"
-          class="absolute size-6 aspect-square bg-light rounded-full transition-all"
+          class="absolute size-6 aspect-square bg-btn-secondary rounded-full"
         ></div>
         <div>
           <svg
@@ -26,7 +26,7 @@
             fill="none"
             viewBox="0 0 24 24"
             stroke-width="1.5"
-            class="size-6 stroke-blue"
+            class="size-6 stroke-btn-accent"
           >
             <path
               stroke-linecap="round"
@@ -41,7 +41,7 @@
             fill="none"
             viewBox="0 0 24 24"
             stroke-width="1.5"
-            class="size-6 stroke-blue"
+            class="size-6 stroke-btn-accent"
           >
             <path
               stroke-linecap="round"
@@ -51,39 +51,45 @@
           </svg>
         </div>
       </button>
-      <div class="min-w-full grid grid-rows-7 gap-2 min-sm:gap-4">
-        <div class="flex justify-end items-end">
-          <input
-            id="expression"
-            type="text"
-            value=""
-            disabled
-            readonly
-            class="w-full text-right text-textClr/50 tracking-wide text-4xl font-light select-none"
-          />
-        </div>
-        <div>
-          <input
-            id="display"
-            type="text"
-            value=""
-            disabled
-            readonly
-            class="w-full text-right text-6xl font-light text-textClr"
-          />
+      <div class="grid grid-rows-7 gap-2 min-sm:gap-4">
+        <div class="flex flex-col justify-end items-end-safe gap-1 row-span-2">
+          <div class="flex justify-end items-end">
+            <input
+              id="expression"
+              type="text"
+              value=""
+              disabled
+              readonly
+              class="w-full text-right text-textClr/50 tracking-wide text-4xl font-light select-none"
+            />
+          </div>
+          <div>
+            <input
+              id="display"
+              type="text"
+              value=""
+              disabled
+              readonly
+              class="w-full text-right text-6xl font-light text-textClr"
+            />
+          </div>
         </div>
 
         <div class="grid grid-cols-4 gap-2 *:select-none min-sm:gap-4">
-          <button id="clear" class="btn bg-light">C</button>
-          <button class="btn bg-light"><sup>+</sup>/<sub>-</sub></button>
-          <button class="btn bg-light">&#x25;</button>
-          <button class="btn !text-white bg-blue">&#xf7;</button>
+          <button data-value="C" class="btn bg-btn-secondary">C</button>
+          <button data-value="+/-" class="btn bg-btn-secondary">
+            <sup>+</sup>/<sub>-</sub>
+          </button>
+          <button data-value="%" class="btn bg-btn-secondary">&#x25;</button>
+          <button data-value="/" class="btn !text-white bg-btn-accent">
+            &#xf7;
+          </button>
         </div>
         <div class="grid grid-cols-4 gap-2 *:select-none min-sm:gap-4">
-          <button class="btn bg-light-btn">7</button>
-          <button class="btn bg-light-btn">8</button>
-          <button class="btn bg-light-btn">9</button>
-          <button class="btn !text-white bg-blue">
+          <button data-value="7" class="btn bg-btn-primary">7</button>
+          <button data-value="8" class="btn bg-btn-primary">8</button>
+          <button data-value="9" class="btn bg-btn-primary">9</button>
+          <button data-value="*" class="btn !text-white bg-btn-accent">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -101,21 +107,25 @@
           </button>
         </div>
         <div class="grid grid-cols-4 gap-2 *:select-none min-sm:gap-4">
-          <button class="btn bg-light-btn">4</button>
-          <button class="btn bg-light-btn">5</button>
-          <button class="btn bg-light-btn">6</button>
-          <button class="btn !text-white bg-blue">&#x2212;</button>
+          <button data-value="4" class="btn bg-btn-primary">4</button>
+          <button data-value="5" class="btn bg-btn-primary">5</button>
+          <button data-value="6" class="btn bg-btn-primary">6</button>
+          <button data-value="-" class="btn !text-white bg-btn-accent">
+            &#x2212;
+          </button>
         </div>
         <div class="grid grid-cols-4 gap-2 *:select-none min-sm:gap-4">
-          <button class="btn bg-light-btn">1</button>
-          <button class="btn bg-light-btn">2</button>
-          <button class="btn bg-light-btn">3</button>
-          <button class="btn !text-white bg-blue">&#x2b;</button>
+          <button data-value="1" class="btn bg-btn-primary">1</button>
+          <button data-value="2" class="btn bg-btn-primary">2</button>
+          <button data-value="3" class="btn bg-btn-primary">3</button>
+          <button data-value="+" class="btn !text-white bg-btn-accent">
+            &#x2b;
+          </button>
         </div>
         <div class="grid grid-cols-4 gap-2 *:select-none min-sm:gap-4">
-          <button class="btn bg-light-btn">,</button>
-          <button class="btn bg-light-btn">0</button>
-          <button class="btn bg-light-btn">
+          <button id="dot" data-value="." class="btn bg-btn-primary">,</button>
+          <button data-value="0" class="btn bg-btn-primary">0</button>
+          <button class="btn bg-btn-primary">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -131,7 +141,9 @@
               />
             </svg>
           </button>
-          <button class="btn !text-white bg-blue">&#x3d;</button>
+          <button data-value="=" class="btn !text-white bg-btn-accent">
+            &#x3d;
+          </button>
         </div>
       </div>
     </main>

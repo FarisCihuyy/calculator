@@ -8,32 +8,28 @@
       "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
       "Courier New", monospace;
-    --color-red-300: oklch(80.8% 0.114 19.571);
     --color-white: #fff;
     --spacing: 0.25rem;
-    --text-3xl: var(--text-3xl);
+    --text-3xl: 2rem;
     --text-3xl--line-height: calc(2.25 / 1.875);
     --text-4xl: 2.25rem;
     --text-4xl--line-height: calc(2.5 / 2.25);
     --text-6xl: 3.75rem;
     --text-6xl--line-height: 1;
-    --text-7xl: 4.5rem;
-    --text-7xl--line-height: 1;
     --font-weight-light: 300;
-    --font-weight-normal: 400;
     --tracking-wide: 0.025em;
     --radius-3xl: 1.5rem;
     --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --aspect-video: 16 / 9;
     --default-transition-duration: 150ms;
     --default-transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     --default-font-family: var(--font-sans);
     --default-mono-font-family: var(--font-mono);
-    --color-textClr: var(--color-textClr);
-    --color-blue: var(--color-blue);
-    --color-light: var(--color-light);
-    --color-light-btn: var(--color-light-btn);
-    --color-light-bg: var(--color-light-bg);
-    --color-dark-bg: var(--color-dark-bg);
+    --color-textClr: var(--clr-text);
+    --color-bg: var(--clr-bg);
+    --color-btn-accent: var(--clr-btn-accent);
+    --color-btn-primary: var(--clr-btn-primary);
+    --color-btn-secondary: var(--clr-btn-secondary);
   }
 }
 @layer base {
@@ -191,14 +187,14 @@
   .relative {
     position: relative;
   }
+  .row-span-2 {
+    grid-row: span 2 / span 2;
+  }
   .flex {
     display: flex;
   }
   .grid {
     display: grid;
-  }
-  .table {
-    display: table;
   }
   .aspect-square {
     aspect-ratio: 1 / 1;
@@ -211,29 +207,14 @@
     width: calc(var(--spacing) * 7);
     height: calc(var(--spacing) * 7);
   }
-  .h-screen {
-    height: 100vh;
-  }
-  .min-h-screen {
-    min-height: 100vh;
+  .h-full {
+    height: 100%;
   }
   .w-\[72px\] {
     width: 72px;
   }
-  .w-fit {
-    width: fit-content;
-  }
   .w-full {
     width: 100%;
-  }
-  .min-w-full {
-    min-width: 100%;
-  }
-  .border-collapse {
-    border-collapse: collapse;
-  }
-  .resize {
-    resize: both;
   }
   .grid-cols-4 {
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -250,14 +231,17 @@
   .items-end {
     align-items: flex-end;
   }
+  .items-end-safe {
+    align-items: safe flex-end;
+  }
   .justify-between {
     justify-content: space-between;
   }
-  .justify-center {
-    justify-content: center;
-  }
   .justify-end {
     justify-content: flex-end;
+  }
+  .gap-1 {
+    gap: calc(var(--spacing) * 1);
   }
   .gap-2 {
     gap: calc(var(--spacing) * 2);
@@ -271,24 +255,17 @@
   .rounded-full {
     border-radius: calc(infinity * 1px);
   }
-  .border {
-    border-style: var(--tw-border-style);
-    border-width: 1px;
+  .bg-btn-accent {
+    background-color: var(--color-btn-accent);
   }
-  .border-red-300 {
-    border-color: var(--color-red-300);
+  .bg-btn-primary {
+    background-color: var(--color-btn-primary);
   }
-  .bg-blue {
-    background-color: var(--color-blue);
+  .bg-btn-secondary {
+    background-color: var(--color-btn-secondary);
   }
-  .bg-light {
-    background-color: var(--color-light);
-  }
-  .bg-light-btn {
-    background-color: var(--color-light-btn);
-  }
-  .stroke-blue {
-    stroke: var(--color-blue);
+  .stroke-btn-accent {
+    stroke: var(--color-btn-accent);
   }
   .p-1 {
     padding: calc(var(--spacing) * 1);
@@ -305,9 +282,6 @@
   .text-right {
     text-align: right;
   }
-  .align-bottom {
-    vertical-align: bottom;
-  }
   .text-4xl {
     font-size: var(--text-4xl);
     line-height: var(--tw-leading, var(--text-4xl--line-height));
@@ -316,17 +290,9 @@
     font-size: var(--text-6xl);
     line-height: var(--tw-leading, var(--text-6xl--line-height));
   }
-  .text-7xl {
-    font-size: var(--text-7xl);
-    line-height: var(--tw-leading, var(--text-7xl--line-height));
-  }
   .font-light {
     --tw-font-weight: var(--font-weight-light);
     font-weight: var(--font-weight-light);
-  }
-  .font-normal {
-    --tw-font-weight: var(--font-weight-normal);
-    font-weight: var(--font-weight-normal);
   }
   .tracking-wide {
     --tw-tracking: var(--tracking-wide);
@@ -344,18 +310,6 @@
       color: color-mix(in oklab, var(--color-textClr) 50%, transparent);
     }
   }
-  .underline {
-    text-decoration-line: underline;
-  }
-  .outline {
-    outline-style: var(--tw-outline-style);
-    outline-width: 1px;
-  }
-  .transition-all {
-    transition-property: all;
-    transition-timing-function: var(--tw-ease, var(--default-transition-timing-function));
-    transition-duration: var(--tw-duration, var(--default-transition-duration));
-  }
   .select-none {
     -webkit-user-select: none;
     user-select: none;
@@ -371,27 +325,26 @@
       gap: calc(var(--spacing) * 4);
     }
   }
-  .dark\:bg-light-bg {
-    @media (prefers-color-scheme: dark) {
-      background-color: var(--color-light-bg);
-    }
-  }
 }
 :root {
-  --color-textClr: #000;
-  --color-blue: #4b5efc;
-  --color-light: #d2d3da;
-  --color-light-btn: #fff;
-  --color-light-bg: #f1f2f3;
-  --color-dark-bg: #17171c;
-  --text-3xl: 2rem;
+  --clr-text: #000;
+  --clr-text-invert: #fff;
+  --clr-btn-primary: #fff;
+  --clr-btn-primary-text: #000;
+  --clr-btn-secondary: #d2d3da;
+  --clr-btn-secondary-text: #000;
+  --clr-btn-accent: #4b5efc;
+  --clr-btn-accent-text: #fff;
+  --clr-bg: #f1f2f3;
 }
 .dark {
-  --color-textClr: #fff;
-  --color-light: #4e505f;
-  --color-light-btn: #2e2f38;
-  --color-light-bg: #17171c;
-  --color-dark-bg: #f1f2f3;
+  --clr-text: #fff;
+  --clr-bg-primary: #2e2f38;
+  --clr-btn-primary: #2e2f38;
+  --clr-btn-primary-text: #fff;
+  --clr-btn-secondary: #4e505f;
+  --clr-btn-secondary-text: #fff;
+  --clr-bg: #17171c;
 }
 * {
   transition-property: color, background-color, border-color, outline-color, text-decoration-color, fill, stroke, --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
@@ -405,32 +358,34 @@
 body {
   font-family: "Work Sans", sans-serif;
   text-color: var(--color-textClr);
-  max-width: 660px;
+  height: 100vh;
+  max-width: 720px;
   margin: 0 auto;
-  background-color: var(--color-light-bg);
+  background-color: var(--color-bg);
 }
 #toggle-circle {
-  right: 4px;
+  left: 4px;
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 #toggle-circle.active {
-  right: calc(100% - 28px);
+  transform: translateX(44px);
 }
 .btn {
   display: flex;
+  aspect-ratio: 1 / 1;
   align-items: center;
   justify-content: center;
   border-radius: var(--radius-3xl);
   font-size: var(--text-3xl);
   line-height: var(--tw-leading, var(--text-3xl--line-height));
   color: var(--color-textClr);
-  @media (width < 660px) {
-    aspect-ratio: 1 / 1;
+  @media (width >= 40rem) {
+    aspect-ratio: var(--aspect-video);
   }
-}
-@property --tw-border-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
+  @media (width >= 40rem) {
+    font-size: var(--text-4xl);
+    line-height: var(--tw-leading, var(--text-4xl--line-height));
+  }
 }
 @property --tw-font-weight {
   syntax: "*";
@@ -439,11 +394,6 @@ body {
 @property --tw-tracking {
   syntax: "*";
   inherits: false;
-}
-@property --tw-outline-style {
-  syntax: "*";
-  inherits: false;
-  initial-value: solid;
 }
 @property --tw-duration {
   syntax: "*";
@@ -456,10 +406,8 @@ body {
 @layer properties {
   @supports ((-webkit-hyphens: none) and (not (margin-trim: inline))) or ((-moz-orient: inline) and (not (color:rgb(from red r g b)))) {
     *, ::before, ::after, ::backdrop {
-      --tw-border-style: solid;
       --tw-font-weight: initial;
       --tw-tracking: initial;
-      --tw-outline-style: solid;
       --tw-duration: initial;
       --tw-ease: initial;
     }

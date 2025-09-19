@@ -3,33 +3,45 @@
 
 /* Light theme variables */
 :root {
-  --color-textClr: #000;
-  --color-blue: #4b5efc;
-  --color-light: #d2d3da;
-  --color-light-btn: #fff;
-  --color-light-bg: #f1f2f3;
-  --color-dark-bg: #17171c;
+  /* Primary */
+  --clr-text: #000;
+  --clr-text-invert: #fff;
 
-  --text-3xl: 2rem;
+  --clr-btn-primary: #fff;
+  --clr-btn-primary-text: #000;
+
+  --clr-btn-secondary: #d2d3da;
+  --clr-btn-secondary-text: #000;
+
+  --clr-btn-accent: #4b5efc;
+  --clr-btn-accent-text: #fff;
+
+  --clr-bg: #f1f2f3;
 }
 
 /* Dark theme overrides */
 .dark {
-  --color-textClr: #fff;
-  --color-light: #4e505f;
-  --color-light-btn: #2e2f38;
-  --color-light-bg: #17171c;
-  --color-dark-bg: #f1f2f3;
+  --clr-text: #fff;
+  --clr-bg-primary: #2e2f38;
+
+  --clr-btn-primary: #2e2f38;
+  --clr-btn-primary-text: #fff;
+
+  --clr-btn-secondary: #4e505f;
+  --clr-btn-secondary-text: #fff;
+
+  --clr-bg: #17171c;
 }
 
 @theme {
-  --color-textClr: var(--color-textClr);
-  --color-blue: var(--color-blue);
-  --color-light: var(--color-light);
-  --color-light-btn: var(--color-light-btn);
-  --color-light-bg: var(--color-light-bg);
-  --color-dark-bg: var(--color-dark-bg);
-  --text-3xl: var(--text-3xl);
+  --color-textClr: var(--clr-text);
+  --color-bg: var(--clr-bg);
+
+  --color-btn-accent: var(--clr-btn-accent);
+  --color-btn-primary: var(--clr-btn-primary);
+  --color-btn-secondary: var(--clr-btn-secondary);
+
+  --text-3xl: 2rem;
 }
 
 /* Tambahkan di global CSS */
@@ -40,19 +52,21 @@
 body {
   font-family: "Work Sans", sans-serif;
   text-color: var(--color-textClr);
-  max-width: 660px;
+  height: 100vh;
+  max-width: 720px;
   margin: 0 auto;
-  background-color: var(--color-light-bg);
+  background-color: var(--color-bg);
 }
 
 #toggle-circle {
-  right: 4px;
+  left: 4px; /* mulai dari kiri */
+  transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
 }
 
 #toggle-circle.active {
-  right: calc(100% - 28px);
+  transform: translateX(44px); /* geser ke kanan */
 }
 
 .btn {
-  @apply flex justify-center items-center max-[660px]:aspect-square rounded-3xl text-textClr text-3xl;
+  @apply flex justify-center items-center aspect-square min-sm:aspect-video rounded-3xl text-textClr text-3xl sm:text-4xl;
 }
